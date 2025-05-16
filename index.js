@@ -17,3 +17,22 @@ const divide = (x,y) => {
         return x  / y;
     }
 }
+
+let num1 = undefined;
+let num2 = undefined;
+let operation = undefined;
+
+function operate(x, y, operation) {
+    switch(operation){
+        case '+':
+            return add(x,y);
+        case '-':
+            return sub(x,y);
+        case '*':
+            return multiply(x,y);
+        case '/':
+            return divide(x,y);
+        default:
+            return '????';
+    }
+}
