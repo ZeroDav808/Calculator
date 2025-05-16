@@ -18,9 +18,6 @@ const divide = (x,y) => {
     }
 }
 
-let num1 = undefined;
-let num2 = undefined;
-let operation = undefined;
 
 function operate(x, y, operation) {
     switch(operation){
@@ -36,3 +33,14 @@ function operate(x, y, operation) {
             return '????';
     }
 }
+
+let num1 = undefined;
+let num2 = undefined;
+let operation = undefined;
+const keyboard = document.querySelector('.keyboard');
+
+function handleClick(e) {
+    console.log(e.target.textContent);
+}
+
+keyboard.addEventListener('click', (e) => {handleClick(e)});
