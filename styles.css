@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: azure;
+    height: 100vh;
+}
+
+.container {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    background-color: beige;
+    border: 2px solid black;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    gap: 3px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+}
+
+.number, .operation, .equal {
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+}
