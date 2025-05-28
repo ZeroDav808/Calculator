@@ -32,4 +32,3 @@ function operate(x, y, operation) {
       return "????";
   }
 }
-
