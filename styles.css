@@ -4,6 +4,8 @@ body {
     justify-content: center;
     background-color: azure;
     height: 100vh;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .container {
@@ -27,6 +29,10 @@ body {
     border: 2px solid black;
     border-radius: 20px;
     background-color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .keyboard {
@@ -46,7 +52,7 @@ body {
     gap: 3px;
 }
 
-.number, .operation, .equal {
+.number, .operation, .equal, .clear {
     height: 50px;
     width: 50px;
     border: 1px solid black;
