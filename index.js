@@ -33,82 +33,99 @@ function operate(x, y, operation) {
   }
 }
 
-const screen = document.querySelector('p');
-const keyboard = document.querySelector('.keyboard');
+const screen = document.querySelector("p");
+const keyboard = document.querySelector(".keyboard");
 
-let num1 = null;
-let num2 = null;
-let op1 = null;
-// let op2 = null;
-let result = null;
+let values = {
+  num1: null,
+  num2: null,
+  op1: null,
+  result: null,
+}
 
 function clear() {
-  num1 = null;
-  num2 = null;
-  op1 = null;
-  //op2 = null;
-  result = null;
-  screen.textContent = '';
+  for(let key in values){
+    values[key] = null;
+  }
+  screen.textContent = "";
 }
 
 function handleNumber(value) {
-  if(!op1){
-    if(!num1){
-      num1 = value;
-    }else{
-      num1 += value;
-    }
-    screen.textContent = num1;
-  } else{
-    if(!num2){
-      num2 = value;
+  if (values.result) {
+    values.num1 = value; // Start fresh with the new number
+    values.result = null;
+    values.op1 = null;
+    values.num2 = null;
+    screen.textContent = values.num1;
+  } else if (!values.op1) {
+    if (!values.num1) {
+      values.num1 = value;
     } else {
-      num2 += value;
+      values.num1 += value;
     }
-    screen.textContent = num2;
+    screen.textContent = values.num1;
+  } else if (values.op1) {
+    if (!values.num2) {
+      values.num2 = value;
+    } else {
+      values.num2 += value;
+    }
+    screen.textContent = values.num2;
   }
 }
 
-function handleOperation(value) {
-  op1 = value;
-  console.log(op1);
-}
 
-function handleEqual(){
-  if(!num1 || !op1 || !num2){
-    return;
+  function handleOperation(value) {
+    if (values.result) {
+      values.num1 = values.result;
+      values.result = null;
+      values.num2 = null; // Reset num2 for the new operation
+    } else if (values.num1 && values.op1 && values.num2) {
+      // Handle chained operations (e.g., 1 + 2 = 3, then * 4)
+      values.result = operate(Number(values.num1), Number(values.num2), values.op1);
+      values.num1 = values.result;
+      values.num2 = null;
+    }
+    values.op1 = value;
+    console.log(values.op1);
   }
 
-  console.log(`Num1 = ${num1}, Num2 = ${num2}, Operation = ${op1}`);
-  result = operate(Number(num1), Number(num2), op1);
-  screen.textContent = result;
-}
+  function handleEqual() {
+    if (!values.num1 || !values.op1 || !values.num2) {
+      return;
+    }
+  
+    console.log(`Num1 = ${values.num1}, Num2 = ${values.num2}, Operation = ${values.op1}`);
+    values.result = operate(Number(values.num1), Number(values.num2), values.op1);
+    screen.textContent = values.result;
+    values.num1 = values.result; // Update num1 for potential next operation
+    values.op1 = null;          // Reset op1 as the current operation is complete
+    values.num2 = null;          // Reset num2
+  }
 
 function handleClick(e) {
   const button = e.target;
 
   switch (button.className) {
-    case 'number':
-      console.log('The button is a number');
+    case "number":
+      console.log("The button is a number");
       handleNumber(button.textContent);
       break;
-    case 'operation':
-      console.log('The button is an operation');
+    case "operation":
+      console.log("The button is an operation");
       handleOperation(button.textContent);
       break;
-    case 'equal':
-      console.log('The button is an equal button');
+    case "equal":
+      console.log("The button is an equal button");
       handleEqual();
       break;
-    case 'clear':
-      console.log('The button is a clear button');
+    case "clear":
+      console.log("The button is a clear button");
       clear();
       break;
   }
-
 }
 
-
-keyboard.addEventListener('click', (e) => {
+keyboard.addEventListener("click", (e) => {
   handleClick(e);
-})
+});
