@@ -74,6 +74,16 @@ function handleOperation(value) {
   console.log(op1);
 }
 
+function handleEqual(){
+  if(!num1 || !op1 || !num2){
+    return;
+  }
+
+  console.log(`Num1 = ${num1}, Num2 = ${num2}, Operation = ${op1}`);
+  result = operate(Number(num1), Number(num2), op1);
+  screen.textContent = result;
+}
+
 function handleClick(e) {
   const button = e.target;
 
@@ -88,6 +98,7 @@ function handleClick(e) {
       break;
     case 'equal':
       console.log('The button is an equal button');
+      handleEqual();
       break;
     case 'clear':
       console.log('The button is a clear button');
