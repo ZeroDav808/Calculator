@@ -59,6 +59,13 @@ function handleNumber(value) {
       num1 += value;
     }
     screen.textContent = num1;
+  } else{
+    if(!num2){
+      num2 = value;
+    } else {
+      num2 += value;
+    }
+    screen.textContent = num2;
   }
 }
 
