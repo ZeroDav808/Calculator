@@ -17,12 +17,6 @@ function divide(x, y) {
   return x / y;
 }
 
-const opVariables = {
-  firstOperand: null,
-  secondOperand: null,
-  operation: null,
-};
-
 function operate(num1, operation, num2) {
   switch (operation) {
     case "+":
@@ -39,3 +33,12 @@ function operate(num1, operation, num2) {
       break;
   }
 }
+
+const keypad = document.querySelector('#inputs');
+const display = document.querySelector('#display');
+
+
+keypad.addEventListener('click', (event)=> {
+  display.textContent = event.target.textContent;
+  console.log(event.target.textContent);
+})
