@@ -1,0 +1,132 @@
+
+
+--------------------------------------------------------------------------------------------------------------
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+    font-size: 2rem;
+    letter-spacing: 1.15px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+    min-height: 100vh; /* Make body take full viewport height */
+    margin: 0;
+    background-color: #f0f2f5; /* Light grey background */
+}
+
+#container{
+    width: 400px;
+    height: 500px;
+    padding: 20px; /* Add some padding inside the container */
+    background-color: #ffffff; /* White background for the calculator */
+    border: 1px solid #e0e0e0; /* Softer border */
+    border-radius: 1.5em; /* Slightly more rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Slightly reduced gap for a tighter look */
+}
+
+#display {
+    height: 100px; /* Reduced height for a sleeker display */
+    width: auto;
+    background-color: #e9ecef; /* Light grey for display background */
+    border: 1px solid #d0d0d0; /* Soft border */
+    border-radius: 0.8em; /* Rounded display corners */
+    margin-bottom: 25px; /* Space between display and buttons */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align text to the right */
+    padding: 0 20px; /* Padding for text inside display */
+    font-size: 3rem; /* Larger font for display */
+    color: #333333; /* Darker text for readability */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px; /* Slightly increased gap between buttons */
+}
+
+.value {
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Make buttons circular */
+    padding: 3px;
+    height: 60px; /* Slightly larger buttons */
+    width: 60px; /* Keep width and height equal for perfect circles */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem; /* Clearer button text */
+    font-weight: 500; /* Slightly bolder text */
+    cursor: pointer; /* Indicate clickable elements */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Smooth transitions */
+    background-color: #f8f9fa; /* Light grey button background */
+    color: #495057; /* Dark grey text color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Subtle button shadow */
+}
+
+.value:hover {
+    background-color: #e2e6ea; /* Lighter grey on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.value:active {
+    background-color: #dae0e5; /* Even lighter grey on click */
+    transform: translateY(0); /* Reset lift on click */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.15); /* Inset shadow for pressed effect */
+}
+
+/* Specific styling for operators and equals */
+.value:nth-child(4n), /* +, -, *, / */
+.value:nth-child(15), /* = */
+.value:nth-child(16) /* Clr */ {
+    background-color: #007bff; /* Blue for operators */
+    color: #ffffff; /* White text for operators */
+}
+
+.value:nth-child(4n):hover,
+.value:nth-child(15):hover,
+.value:nth-child(16):hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.value:nth-child(4n):active,
+.value:nth-child(15):active,
+.value:nth-child(16):active {
+    background-color: #004085; /* Even darker blue on click */
+}
+
+/* Optional: Different color for "Clear" button */
+.value:nth-child(15) { /* Assuming "Clr" is the 15th button if we count from left to right, top to bottom */
+    background-color: #dc3545; /* Red for Clear button */
+}
+
+.value:nth-child(15):hover {
+    background-color: #c82333;
+}
+
+.value:nth-child(15):active {
+    background-color: #bd2130;
+}
+
+/* Optional: Different color for "=" button */
+.value:nth-child(16) { /* Assuming "=" is the 16th button */
+    background-color: #28a745; /* Green for Equals button */
+}
+
+.value:nth-child(16):hover {
+    background-color: #218838;
+}
+
+.value:nth-child(16):active {
+    background-color: #1e7e34;
+}
