@@ -38,10 +38,12 @@ let values = {
   firstNum: null,
   secondNum: null,
   operator: null,
+  result: null,
 };
 
 function clear() {
   for (let key in values) {
+    console.log(`${key} is now null`);
     values[key] = null;
   }
   screen.textContent = "";
@@ -60,6 +62,7 @@ function handleNumber(value) {
   } else {
     if (!values.secondNum) {
       values.secondNum = num;
+      screen.textContent = values.secondNum;
     } else {
       values.secondNum += num;
       screen.textContent = values.secondNum;
@@ -74,13 +77,21 @@ function handleOperator(target) {
     - We just need to store the operator and allow the user to enter the second
       number. If they want to chain operators then the next case will handle that,
       else they should just enter equal to calculate the result.
-      
+
   2. If the operator is entered and there is two numbers already
     - When two numbers are present and another operator is entered,
       we should calculate a result, set the first number = result, 
       and allow for the second number to be entered and chained
       like previously
   */
+
+  const op = target.textContent;
+  // Case 1 Implementation
+  if (!values.result && !values.secondNum && values.firstNum) {
+    values.operator = op;
+    screen.textContent = "";
+    console.log(values.operator);
+  }
 }
 
 function handleClick(event) {
@@ -92,7 +103,7 @@ function handleClick(event) {
       handleNumber(target);
       break;
     case "operator":
-      console.log(`It's an operator`);
+      console.log(`It's an operator -> ${target.textContent}`);
       handleOperator(target);
       break;
     case "equal":
