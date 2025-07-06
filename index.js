@@ -54,36 +54,57 @@ let values = {
 function clear() {
   for (let key in values) {
     console.log(`${key} is now null`);
-
     values[key] = null;
   }
-
   screen.textContent = "";
 }
 
-function handleNumber(value) {}
+function handleNumber(value) {
+  if(!values.operator){
+    console.log('Appending to the first number');
+    if(!values.firstNum){
+      values.firstNum = value;
+    } else{
+      values.firstNum += value;
+    }
+    screen.textContent = values.firstNum;
+  } else {
+    console.log('Appending to the second number');
+    if(!values.secondNum){
+      values.secondNum = value;
+    } else{
+      values.secondNum += value;
+    }
+    screen.textContent = values.secondNum;
+  }
+}
 
-function handleOperator(target) {}
+function handleOperator(target) {
+  screen.textContent = '';
+  values.operator = target;
+}
 
-function handleEqual() {}
+function handleEqual() {
+  console.log(`Performing calculation: ${values.firstNum} ${values.operator} ${values.secondNum}`);
+  values.result = operate(values.firstNum, values.operator, values.secondNum);
+  screen.textContent = values.result;
+}
 
 function handleClick(event) {
   let target = event.target;
+  console.log(`Event detected. The key clicked is ${target.textContent}`);
 
   switch (target.classList[1]) {
     case "number":
-      console.log(`It's a number`);
+      handleNumber(target.textContent);
       break;
     case "operator":
-      console.log(`It's an operator -> ${target.textContent}`);
-      handleOperator(target);
+      handleOperator(target.textContent);
       break;
     case "equal":
-      console.log(`It's an equal sign`);
       handleEqual();
       break;
     case "clear":
-      console.log(`It's a clear sign`);
       clear();
       break;
     default:
