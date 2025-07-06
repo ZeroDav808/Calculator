@@ -29,7 +29,9 @@ function operate(num1, operation, num2) {
       console.log(`The result of ${num1} - ${num2} = ${sub(+num1, +num2)}`);
       return sub(+num1, +num2);
     case "*":
-      console.log(`The result of ${num1} * ${num2} = ${multiply(+num1, +num2)}`);
+      console.log(
+        `The result of ${num1} * ${num2} = ${multiply(+num1, +num2)}`
+      );
       return multiply(+num1, +num2);
     case "/":
       console.log(`The result of ${num1} / ${num2} = ${divide(+num1, +num2)}`);
@@ -60,19 +62,19 @@ function clear() {
 }
 
 function handleNumber(value) {
-  if(!values.operator){
-    console.log('Appending to the first number');
-    if(!values.firstNum){
+  if (!values.operator) {
+    console.log("Appending to the first number");
+    if (!values.firstNum) {
       values.firstNum = value;
-    } else{
+    } else {
       values.firstNum += value;
     }
     screen.textContent = values.firstNum;
   } else {
-    console.log('Appending to the second number');
-    if(!values.secondNum){
+    console.log("Appending to the second number");
+    if (!values.secondNum) {
       values.secondNum = value;
-    } else{
+    } else {
       values.secondNum += value;
     }
     screen.textContent = values.secondNum;
@@ -80,12 +82,29 @@ function handleNumber(value) {
 }
 
 function handleOperator(target) {
-  screen.textContent = '';
-  values.operator = target;
+  screen.textContent = "";
+  if (values.firstNum) {
+    if (!values.operator) {
+      values.operator = target;
+    } else if (values.operator) {
+      values.result = operate(
+        values.firstNum,
+        values.operator,
+        values.secondNum
+      );
+      values.firstNum = values.result;
+      values.secondNum = null;
+      values.result = null;
+      values.operator = target;
+      screen.textContent = values.firstNum;
+    }
+  }
 }
 
 function handleEqual() {
-  console.log(`Performing calculation: ${values.firstNum} ${values.operator} ${values.secondNum}`);
+  console.log(
+    `Performing calculation: ${values.firstNum} ${values.operator} ${values.secondNum}`
+  );
   values.result = operate(values.firstNum, values.operator, values.secondNum);
   screen.textContent = values.result;
 }
@@ -115,7 +134,7 @@ function handleClick(event) {
 const keyboard = document.querySelector("#inputs");
 const screen = document.querySelector("#display");
 
-console.log(`Keyboard activated. Attaching event listener to keyboard.`)
+console.log(`Keyboard activated. Attaching event listener to keyboard.`);
 keyboard.addEventListener("click", (event) => {
   handleClick(event);
 });
